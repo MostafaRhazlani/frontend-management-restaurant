@@ -36,9 +36,36 @@
               </li>
             </ul>
             <div class="user_option">
-              <a href="" class="user_link">
-                <i class="fa fa-user" aria-hidden="true"></i>
-              </a>
+              <router-link to="/client/login" title="log in" class="user_link">
+                <i class="fa-solid fa-right-to-bracket"></i>
+              </router-link>
+
+              <router-link to="/register" title="register" class="user_link">
+                <i class="fa-solid fa-user-plus"></i>
+              </router-link>
+
+              <!-- Example single danger button -->
+              <div class="btn-group">
+                <a href="" class="user_link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                </a>
+                <div class="dropdown-menu ">
+                  <a class="dropdown-item m-0" href="#">
+                    <i class="fa-solid fa-address-card"></i>&nbsp;
+                    Profile
+                  </a>
+                  <a class="dropdown-item m-0" href="#">
+                    <i class="fa-solid fa-gear"></i>&nbsp;
+                    Settings
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item m-0" href="#">
+                    <i class="fa-solid fa-right-to-bracket"></i>&nbsp;
+                    Logout
+                  </a>
+                </div>
+              </div>
+
               <a class="cart_link" href="#">
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029"
@@ -97,8 +124,9 @@
                   </g>
                 </svg>
               </a>
+
               <router-link to="/owner/page" class="order_online">
-                <i class="fa-solid fa-building"></i>
+                <i class="fa-solid fa-utensils"></i>&nbsp;
                 My Restaurant
               </router-link>
             </div>
