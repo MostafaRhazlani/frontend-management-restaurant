@@ -40,7 +40,11 @@
                     <input class="form-control" type="password" id="password" placeholder="Enter your password">
                   </div>
                   <div class="mb-4">
-                    <button class="btn btn-primary" type="submit">Register</button>
+                    <label class="label-control" for="confirm_password">Confirm Password</label>
+                    <input class="form-control" type="password" id="confirm_password" placeholder="Confirm your password">
+                  </div>
+                  <div class="mb-4">
+                    <button class="btn btn-primary col-12" type="submit">Register</button>
                   </div>
                 </form>
               </div>
