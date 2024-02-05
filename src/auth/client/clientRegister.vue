@@ -26,22 +26,22 @@
             </div>
             <div class="tab-content">
               <div class="tab-pane active" id="profile">
-                <form class="form-horizontal">
+                <form @submit.prevent="handleSubmit" class="form-horizontal">
                   <div class="mb-3">
                     <label class="label-control" for="username">Username</label>
-                    <input class="form-control" type="text" placeholder="Enter your username">
+                    <input v-model="name" class="form-control" type="text" placeholder="Enter your username">
                   </div>
                   <div class="mb-3">
                     <label class="label-control" for="email">Email</label>
-                    <input class="form-control" type="text" id="email" placeholder="Enter your email">
+                    <input v-model="email" class="form-control" type="text" id="email" placeholder="Enter your email">
                   </div>
                   <div class="mb-4">
                     <label class="label-control" for="password">Password</label>
-                    <input class="form-control" type="password" id="password" placeholder="Enter your password">
+                    <input v-model="password" class="form-control" type="password" id="password" placeholder="Enter your password">
                   </div>
                   <div class="mb-4">
                     <label class="label-control" for="confirm_password">Confirm Password</label>
-                    <input class="form-control" type="password" id="confirm_password" placeholder="Confirm your password">
+                    <input v-model="password_confirmation" class="form-control" type="password" id="confirm_password" placeholder="Confirm your password">
                   </div>
                   <div class="mb-4">
                     <button class="btn btn-primary col-12" type="submit">Register</button>
@@ -57,7 +57,7 @@
             <div>
               <p>back to:
                 <span>
-                  <router-link to="/client/login">
+                  <router-link to="/login">
                     Login
                   </router-link>
                 </span>
@@ -72,12 +72,39 @@
 </template>
 <script>
 import OwnerRegister from '../owner/OwnerRegister.vue';
+import axios from 'axios';
   export default {
     components: {
       OwnerRegister
-    }
+    },
+
+    data() {
+      return {
+        'name': '',
+        'email': '',
+        'password': '',
+        'password_confirmation': '',
+      }
+    },
+
+    methods: {
+      async handleSubmit() {
+        try {
+          
+          const response = await axios.post('register', {
+              name: this.name,
+              email: this.email,
+              password: this.password,
+              password_confirmation: this.password_confirmation,
+          });
+
+          this.$router.push('/login');
+
+        } catch (error){
+          alert('Registration failed:', error);
+        }
+
+      }
+    },    
   }
 </script>
-<style lang="">
-
-</style>
