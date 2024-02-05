@@ -4,8 +4,8 @@ import RestaurantView from '../pages/Restaurant/RestaurantComponent.vue';
 import AboutView from '../pages/About/AboutComponent.vue';
 import ReserveView from '../pages/Reserve/ReserveComponent.vue';
 import OwnerPage from '../admin/OwnerPage/OwnerPage.vue';
-import Login from '../auth/client/clientLogin.vue';
-import Register from '../auth/client/clientRegister.vue';
+import Login from '../auth/client/Login.vue';
+import Register from '../auth/client/Register.vue';
 import RegisterOwnerRestaurant from '../auth/owner/RegisterOwnerRestaurant.vue';
 
 const router = createRouter({
