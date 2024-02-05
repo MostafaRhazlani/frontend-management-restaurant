@@ -36,16 +36,18 @@
               </li>
             </ul>
             <div class="user_option">
-              <router-link to="/client/login" title="log in" class="user_link">
-                <i class="fa-solid fa-right-to-bracket"></i>
-              </router-link>
+              <div v-if="!user">
+                <router-link to="/login" title="log in" class="user_link">
+                  <i class="fa-solid fa-right-to-bracket"></i>
+                </router-link>
 
-              <router-link to="/register" title="register" class="user_link">
-                <i class="fa-solid fa-user-plus"></i>
-              </router-link>
+                <router-link to="/register" title="register" class="user_link">
+                  <i class="fa-solid fa-user-plus"></i>
+                </router-link>
+              </div>
 
               <!-- Example single danger button -->
-              <div class="btn-group">
+              <div v-if="user" class="btn-group">
                 <a href="" class="user_link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                   <i class="fa fa-user" aria-hidden="true"></i>
                 </a>
@@ -59,7 +61,7 @@
                     Settings
                   </a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item m-0" href="#">
+                  <a class="dropdown-item m-0" href="javascript:void(0)" @click="handleClick">
                     <i class="fa-solid fa-right-to-bracket"></i>&nbsp;
                     Logout
                   </a>
@@ -125,10 +127,10 @@
                 </svg>
               </a>
 
-              <router-link to="/owner/page" class="order_online">
+              <button class="order_online" @click="accessClick">
                 <i class="fa-solid fa-utensils"></i>&nbsp;
                 My Restaurant
-              </router-link>
+              </button>
             </div>
           </div>
         </nav>
@@ -139,7 +141,36 @@
 
 </template>
 <script>
+import axios from 'axios';
   export default {
+    data() {
+      return {
+        user: null
+      }
+    },
 
+      async created() {
+        const response = await axios.get('user');
+
+        this.user = response.data
+      },
+
+      methods: {
+        handleClick() {
+          localStorage.removeItem('token');
+          this.$router.push('/home');
+        },
+
+        async accessClick() {
+          try {
+            const response = await axios.get('user');
+  
+            this.user = response.data
+            this.$router.push('/owner/page')
+          } catch (error) {
+            alert('you are not logged');
+          }
+        }
+      }
   }
 </script>
