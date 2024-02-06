@@ -1,7 +1,23 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
 import Header from './_Header.vue';
 import Footer from './_Footer.vue';
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
+import { useStore } from 'vuex';
+
+
+  const store = useStore();
+
+  const created = () => {
+    axios.get('user')
+    .then((response) => {
+      store.dispatch('change', response.data)
+    })
+  }
+
+  onMounted(() => {
+    created();
+  })
 </script>
   
 <template>

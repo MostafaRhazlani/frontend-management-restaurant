@@ -36,15 +36,7 @@
               </li>
             </ul>
             <div class="user_option">
-              <div v-if="!user">
-                <router-link to="/login" title="log in" class="user_link">
-                  <i class="fa-solid fa-right-to-bracket"></i>
-                </router-link>
-
-                <router-link to="/register" title="register" class="user_link">
-                  <i class="fa-solid fa-user-plus"></i>
-                </router-link>
-              </div>
+              
 
               <!-- Example single danger button -->
               <div v-if="user" class="btn-group">
@@ -61,11 +53,21 @@
                     Settings
                   </a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item m-0" href="javascript:void(0)" @click="handleClick">
+                  <a href="javascript:void(0)" class="dropdown-item m-0" @click="handleClick">
                     <i class="fa-solid fa-right-to-bracket"></i>&nbsp;
                     Logout
                   </a>
                 </div>
+              </div>
+
+              <div v-else>
+                <router-link to="/login" title="log in" class="user_link">
+                  <i class="fa-solid fa-right-to-bracket"></i>
+                </router-link>
+
+                <router-link to="/register" title="register" class="user_link">
+                  <i class="fa-solid fa-user-plus"></i>
+                </router-link>
               </div>
 
               <a class="cart_link" href="#">
@@ -127,7 +129,7 @@
                 </svg>
               </a>
 
-              <button class="order_online" @click="accessClick">
+              <button class="order_online ml-2" @click="accessClick">
                 <i class="fa-solid fa-utensils"></i>&nbsp;
                 My Restaurant
               </button>
@@ -140,37 +142,30 @@
   </div>
 
 </template>
-<script>
+<script setup>
 import axios from 'axios';
-  export default {
-    data() {
-      return {
-        user: null
-      }
-    },
+import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+import { computed } from 'vue'
 
-      async created() {
-        const response = await axios.get('user');
+  const store = useStore();
+  const router = useRouter();
 
-        this.user = response.data
-      },
+  const user = computed(() => store.getters.isLoggedin);
 
-      methods: {
-        handleClick() {
-          localStorage.removeItem('token');
-          this.$router.push('/home');
-        },
+  const handleClick = () => {
+    localStorage.removeItem('token');
+    store.dispatch('change', null)
+    router.push('/home');
+  }
 
-        async accessClick() {
-          try {
-            const response = await axios.get('user');
-  
-            this.user = response.data
-            this.$router.push('/owner/page')
-          } catch (error) {
-            alert('you are not logged');
-          }
-        }
-      }
+  const accessClick = () => {
+      axios.get('user')
+      .then((response) => {
+        router.push('/owner/page')
+      })
+      .catch((error) => {
+        console.error('User is not logged in', error);
+      });
   }
 </script>
