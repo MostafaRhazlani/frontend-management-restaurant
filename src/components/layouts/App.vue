@@ -4,7 +4,9 @@ import Footer from './_Footer.vue';
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useStore } from 'vuex';
+import { useRoute } from 'vue-router';
 
+  const route = useRoute();
 
   const store = useStore();
 
@@ -21,7 +23,7 @@ import { useStore } from 'vuex';
 </script>
   
 <template>
-  <Header v-if="$route.meta.showHeader"/>
+  <Header v-if="route.meta.showHeader"/>
   <RouterView />
-  <Footer v-if="$route.meta.showFooter"/>
+  <Footer v-if="route.meta.showFooter"/>
 </template>

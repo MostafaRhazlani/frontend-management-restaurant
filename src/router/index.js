@@ -15,57 +15,76 @@ const router = createRouter({
       path: '/home',
       name: 'home',
       component: HomeView,
-      meta: { showFooter: true },
-      meta: { showHeader: true }
+      meta: { 
+        showFooter: true,
+        showHeader: true
+      },
     },
     {
       path: '/client/restaurant',
       name: 'client.restaurant',
       component: RestaurantView,
-      meta: { showFooter: true },
-      meta: { showHeader: true }
+      meta: { 
+        showFooter: true,
+        showHeader: true
+      },
     },
     {
       path: '/client/about',
       name: 'client.about',
       component: AboutView,
-      meta: { showFooter: true },
-      meta: { showHeader: true }
+      meta: { 
+        showFooter: true,
+        showHeader: true
+      },
     },
     {
       path: '/client/reserve',
       name: 'client.reserve',
       component: ReserveView,
-      meta: { showFooter: true },
-      meta: { showHeader: true }
+      meta: { 
+        showFooter: true,
+        showHeader: true
+      },
     },
     {
       path: '/owner/page',
       name: 'owner.page',
       component: OwnerPage,
-      meta: { showFooter: false },
-      meta: { showHeader: true }
+      meta: { 
+        showFooter: false,
+        showHeader: true
+      },
     },
 
     {
       path: '/login',
       name: 'login',
       component: Login,
-      meta: { showHeader: false }
+      meta: { 
+        showFooter: false,
+        showHeader: false
+      },
     },
 
     {
       path: '/register',
       name: 'register',
       component: Register,
-      meta: { showHeader: false }
+      meta: { 
+        showFooter: false,
+        showHeader: false
+      },
     },
 
     {
       path: '/register/restaurant',
       name: 'register.restaurant',
       component: RegisterOwnerRestaurant,
-      meta: { showHeader: false }
+      meta: { 
+        showFooter: false,
+        showHeader: false
+      },
     },
   ]
 })
