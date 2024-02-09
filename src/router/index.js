@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../pages/Home/HomeComponent.vue';
 import RestaurantView from '../pages/Restaurant/RestaurantComponent.vue';
+import MenuView from '../pages/Restaurant/MenuComponent.vue';
 import AboutView from '../pages/About/AboutComponent.vue';
 import ReserveView from '../pages/Reserve/ReserveComponent.vue';
 import OwnerPage from '../admin/OwnerPage/OwnerPage.vue';
@@ -15,57 +16,87 @@ const router = createRouter({
       path: '/home',
       name: 'home',
       component: HomeView,
-      meta: { showFooter: true },
-      meta: { showHeader: true }
+      meta: { 
+        showFooter: true,
+        showHeader: true
+      },
     },
     {
       path: '/client/restaurant',
       name: 'client.restaurant',
       component: RestaurantView,
-      meta: { showFooter: true },
-      meta: { showHeader: true }
+      meta: { 
+        showFooter: true,
+        showHeader: true
+      },
     },
+
+    {
+      path: '/menu/:id',
+      name: 'menu',
+      component: MenuView,
+      meta: { 
+        showFooter: true,
+        showHeader: true
+      },
+    },
+
     {
       path: '/client/about',
       name: 'client.about',
       component: AboutView,
-      meta: { showFooter: true },
-      meta: { showHeader: true }
+      meta: { 
+        showFooter: true,
+        showHeader: true
+      },
     },
     {
       path: '/client/reserve',
       name: 'client.reserve',
       component: ReserveView,
-      meta: { showFooter: true },
-      meta: { showHeader: true }
+      meta: { 
+        showFooter: true,
+        showHeader: true
+      },
     },
     {
       path: '/owner/page',
       name: 'owner.page',
       component: OwnerPage,
-      meta: { showFooter: false },
-      meta: { showHeader: true }
+      meta: { 
+        showFooter: false,
+        showHeader: true
+      },
     },
 
     {
       path: '/login',
       name: 'login',
       component: Login,
-      meta: { showHeader: false }
+      meta: { 
+        showFooter: false,
+        showHeader: false
+      },
     },
 
     {
       path: '/register',
       name: 'register',
       component: Register,
-      meta: { showHeader: false }
+      meta: { 
+        showFooter: false,
+        showHeader: false
+      },
     },
 
     {
       path: '/register/restaurant',
       name: 'register.restaurant',
       component: RegisterOwnerRestaurant,
-      meta: { showHeader: false }
+      meta: { 
+        showFooter: false,
+        showHeader: false
+      },
     },
   ]
 })
