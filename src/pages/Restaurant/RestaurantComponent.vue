@@ -47,7 +47,7 @@
                       </a>
                     </div>
                   </div>
-                  <router-link to="/menu">Our Menu</router-link>
+                  <router-link :to="`/menu/${restaurant.id}`">Our Menu</router-link>
                 </div>
               </div>
             </div>
@@ -63,10 +63,7 @@
 </template>
 <script setup>
   import axios from 'axios';
-  import {
-    onMounted,
-    ref
-  } from 'vue';
+  import { onMounted, ref } from 'vue';
 
   const restaurants = ref([]);
 

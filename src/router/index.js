@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../pages/Home/HomeComponent.vue';
 import RestaurantView from '../pages/Restaurant/RestaurantComponent.vue';
+import MenuView from '../pages/Restaurant/MenuComponent.vue';
 import AboutView from '../pages/About/AboutComponent.vue';
 import ReserveView from '../pages/Reserve/ReserveComponent.vue';
 import OwnerPage from '../admin/OwnerPage/OwnerPage.vue';
@@ -29,6 +30,17 @@ const router = createRouter({
         showHeader: true
       },
     },
+
+    {
+      path: '/menu/:id',
+      name: 'menu',
+      component: MenuView,
+      meta: { 
+        showFooter: true,
+        showHeader: true
+      },
+    },
+
     {
       path: '/client/about',
       name: 'client.about',
