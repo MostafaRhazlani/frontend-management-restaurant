@@ -26,9 +26,10 @@
             </div>
             <div class="tab-content">
               <div class="tab-pane active" id="profile">
-                <form @submit.prevent="handleSubmit()" class="form-horizontal">
+                <form @submit.prevent="submitUser()" class="form-horizontal">
                   <div class="mb-3">
                     <label class="label-control" for="username">Username</label>
+                    <input v-model="form.type_role" class="form-control" type="hidden">
                     <input v-model="form.name" class="form-control" type="text" placeholder="Enter your username">
                   </div>
                   <div class="mb-3">
@@ -78,11 +79,12 @@ import { useRouter } from 'vue-router';
         'name': '',
         'email': '',
         'password': '',
-        'password_confirmation': ''
+        'password_confirmation': '',
+        'type_role': 'User'
     });
 
 
-    const handleSubmit = () => {
+    const submitUser = () => {
           
       axios.post('register', form)
       .then((responnse) => {
