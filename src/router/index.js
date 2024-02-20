@@ -7,7 +7,6 @@ import ReserveView from '../pages/Reserve/ReserveComponent.vue';
 import OwnerPage from '../admin/OwnerPage/OwnerPage.vue';
 import Login from '../auth/client/Login.vue';
 import Register from '../auth/client/Register.vue';
-import RegisterOwnerRestaurant from '../auth/owner/RegisterOwnerRestaurant.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -75,7 +74,7 @@ const router = createRouter({
       component: Login,
       meta: { 
         showFooter: false,
-        showHeader: false
+        showHeader: true
       },
     },
 
@@ -85,17 +84,7 @@ const router = createRouter({
       component: Register,
       meta: { 
         showFooter: false,
-        showHeader: false
-      },
-    },
-
-    {
-      path: '/register/restaurant',
-      name: 'register.restaurant',
-      component: RegisterOwnerRestaurant,
-      meta: { 
-        showFooter: false,
-        showHeader: false
+        showHeader: true
       },
     },
   ]
