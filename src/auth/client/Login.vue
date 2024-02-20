@@ -1,14 +1,17 @@
 <template lang="">
   
   <div class="container">
-    <div class="col d-flex justify-content-center">
-      <div class="col-6 mt-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6 mt-5">
         <div class="card">
           <div class="card-body">
             <div class="text-center">
               <h3>Login To Start </h3>
             </div>
             <form @submit.prevent="handleSubmit">
+              <div class="alert alert-danger text-center" v-if="errorMessage" role="alert">
+                  {{ errorMessage }}
+                </div> 
               <div class="mb-4">
                 <label class="label-control" for="email">Email</label>
                 <input v-model="form.email" class="form-control" type="text" id="email" placeholder="Enter your email">
@@ -40,12 +43,13 @@
 </template>
 <script setup>
 import axios from 'axios';
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 
   const store = useStore();
   const router = useRouter();
+  const errorMessage = ref('');
 
   const form = reactive({
     'email': '',
@@ -63,7 +67,8 @@ import { useStore } from 'vuex';
       router.push('/home');
     })
     .catch ((error) => {
-      console.error('Invalid email or password', error)
+      
+      errorMessage.value = error.response.data.message
     })
   }
 
