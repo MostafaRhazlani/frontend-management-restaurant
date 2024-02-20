@@ -24,6 +24,16 @@ import { useRoute } from 'vue-router';
   
 <template>
   <Header v-if="route.meta.showHeader"/>
-  <RouterView />
+  <div class="p-top">
+    <RouterView />
+  </div>
   <Footer v-if="route.meta.showFooter"/>
 </template>
+
+<style>
+
+  .p-top {
+    padding-top: 88px;
+  }
+
+</style>
