@@ -17,7 +17,8 @@ const router = createRouter({
       component: HomeView,
       meta: { 
         showFooter: true,
-        showHeader: true
+        showHeader: true,
+        showSidebar: false
       },
     },
     {
@@ -26,7 +27,8 @@ const router = createRouter({
       component: RestaurantView,
       meta: { 
         showFooter: true,
-        showHeader: true
+        showHeader: true,
+        showSidebar: false
       },
     },
 
@@ -36,7 +38,8 @@ const router = createRouter({
       component: MenuView,
       meta: { 
         showFooter: true,
-        showHeader: true
+        showHeader: true,
+        showSidebar: false
       },
     },
 
@@ -46,7 +49,8 @@ const router = createRouter({
       component: AboutView,
       meta: { 
         showFooter: true,
-        showHeader: true
+        showHeader: true,
+        showSidebar: false
       },
     },
     {
@@ -55,7 +59,8 @@ const router = createRouter({
       component: ReserveView,
       meta: { 
         showFooter: true,
-        showHeader: true
+        showHeader: true,
+        showSidebar: false
       },
     },
     {
@@ -64,7 +69,8 @@ const router = createRouter({
       component: OwnerPage,
       meta: { 
         showFooter: false,
-        showHeader: true
+        showHeader: true,
+        showSidebar: true
       },
     },
 
@@ -74,7 +80,8 @@ const router = createRouter({
       component: Login,
       meta: { 
         showFooter: false,
-        showHeader: true
+        showHeader: true,
+        showSidebar: false
       },
     },
 
@@ -84,7 +91,8 @@ const router = createRouter({
       component: Register,
       meta: { 
         showFooter: false,
-        showHeader: true
+        showHeader: true,
+        showSidebar: false
       },
     },
   ]

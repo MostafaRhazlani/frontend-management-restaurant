@@ -1,6 +1,7 @@
 <script setup>
 import Header from './_Header.vue';
 import Footer from './_Footer.vue';
+import Sidebar from './_Sidebar.vue';
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useStore } from 'vuex';
@@ -24,6 +25,7 @@ import { useRoute } from 'vue-router';
   
 <template>
   <Header v-if="route.meta.showHeader"/>
+  <Sidebar v-if="route.meta.showSidebar"/>
   <div class="p-top">
     <RouterView />
   </div>
