@@ -12,25 +12,25 @@
     <!-- links -->
     <ul class="links">
       <li>
-        <router-link to="#">
+        <router-link to="/owner">
           <i class="fa-solid fa-gauge"></i>&nbsp;
           Dashboard
         </router-link>
       </li>
       <li>
-        <router-link to="#">
+        <router-link to="/owner/category">
           <i class="fa-solid fa-list"></i>&nbsp;
           Categories
           </router-link>
       </li>
       <li>
-        <router-link to="#">
+        <router-link to="/owner/menu">
           <i class="fa-solid fa-utensils"></i>&nbsp;
           Menus
           </router-link>
       </li>
       <li>
-        <router-link to="#">
+        <router-link to="/owner/profile">
           <i class="fa-solid fa-user"></i>&nbsp;
           Profile
           </router-link>
