@@ -1,5 +1,5 @@
 <template>
-  <div class="heading_container heading_center mt-5">
+  <div class="heading_container heading_center mt-3">
     <h2>
       Restaurants
     </h2>
