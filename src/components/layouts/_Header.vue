@@ -53,14 +53,18 @@
                     <i class="fa fa-user" aria-hidden="true"></i>
                   </a>
                   <div class="dropdown-menu ">
-                    <a class="dropdown-item m-0" href="#">
+                    <router-link class="dropdown-item m-0" to="/owner/profile">
                       <i class="fa-solid fa-address-card"></i>&nbsp;
                       Profile
-                    </a>
-                    <a class="dropdown-item m-0" href="#">
+                    </router-link>
+                    <router-link class="dropdown-item m-0" to="#">
+                      <i class="fa-solid fa-users"></i>&nbsp;
+                      Users
+                    </router-link>
+                    <router-link class="dropdown-item m-0" to="#">
                       <i class="fa-solid fa-gear"></i>&nbsp;
                       Settings
-                    </a>
+                    </router-link>
                     <div class="dropdown-divider"></div>
                     <a href="javascript:void(0)" class="dropdown-item m-0" @click="authStore.handleLogout">
                       <i class="fa-solid fa-right-to-bracket"></i>&nbsp;
