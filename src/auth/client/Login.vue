@@ -1,14 +1,17 @@
 <template lang="">
   
   <div class="container">
-    <div class="col d-flex justify-content-center">
-      <div class="col-6 mt-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6 mt-5">
         <div class="card">
           <div class="card-body">
             <div class="text-center">
               <h3>Login To Start </h3>
             </div>
-            <form @submit.prevent="handleSubmit">
+            <form @submit.prevent="authStore.handleLogin(form)">
+              <!-- <div class="alert alert-danger text-center" v-if="errorMessage" role="alert">
+                  {{ errorMessage }}
+                </div>  -->
               <div class="mb-4">
                 <label class="label-control" for="email">Email</label>
                 <input v-model="form.email" class="form-control" type="text" id="email" placeholder="Enter your email">
@@ -39,32 +42,14 @@
 
 </template>
 <script setup>
-import axios from 'axios';
-import { reactive } from 'vue';
-import { useRouter } from 'vue-router';
-import { useStore } from 'vuex';
+import { ref } from 'vue';
+import { useAuthStore } from '@/stores/storeAuth';
 
-  const store = useStore();
-  const router = useRouter();
+  const authStore = useAuthStore();
 
-  const form = reactive({
-    'email': '',
-    'password': ''
+  const form = ref({
+    email: '',
+    password: ''
   });
-
-  const handleSubmit = () => {
-
-    axios.post('login', form)
-    .then((response) => {
-      form.email = response.data.email,
-      form.password = response.data.password;
-      localStorage.setItem('token', response.data.token );
-      store.dispatch('change', response.data.user)
-      router.push('/home');
-    })
-    .catch ((error) => {
-      console.error('Invalid email or password', error)
-    })
-  }
 
 </script>

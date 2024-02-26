@@ -1,8 +1,8 @@
 <template lang="">
 
   <div class="container">
-    <div class="col d-flex justify-content-center">
-      <div class="col-6 mt-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8 mt-5">
         <div class="card">
           <div class="card-body">
             <div class="text-center">
@@ -24,20 +24,24 @@
                 </li>
               </ul>
             </div>
-            <div class="tab-content">
+            <div class="tab-content ">
               <div class="tab-pane active" id="profile">
-                <form @submit.prevent="handleSubmit()" class="form-horizontal">
+                <form @submit.prevent="authStore.handleRegister(form)" class="form-horizontal">
                   <div class="mb-3">
                     <label class="label-control" for="username">Username</label>
+                    <input v-model="form.type_role" class="form-control" type="hidden">
                     <input v-model="form.name" class="form-control" type="text" placeholder="Enter your username">
+                    <span class="text-danger" v-if="errors && errors.name">{{ errors.name[0] }}</span>
                   </div>
                   <div class="mb-3">
                     <label class="label-control" for="email">Email</label>
                     <input v-model="form.email" class="form-control" type="text" id="email" placeholder="Enter your email">
+                    <span class="text-danger" v-if="errors && errors.email">{{ errors.email[0] }}</span>
                   </div>
                   <div class="mb-4">
                     <label class="label-control" for="password">Password</label>
                     <input v-model="form.password" class="form-control" type="password" id="password" placeholder="Enter your password">
+                    <span class="text-danger" v-if="errors && errors.password">{{ errors.password[0] }}</span>
                   </div>
                   <div class="mb-4">
                     <label class="label-control" for="confirm_password">Confirm Password</label>
@@ -48,8 +52,7 @@
                   </div>
                 </form>
               </div>
-
-              <OwnerRegister />
+                <owner-register />
             </div>
             <div>
               <p>back to:
@@ -68,29 +71,16 @@
 
 </template>
 <script setup>
-import OwnerRegister from '../owner/OwnerRegister.vue';
-import axios from 'axios';
-import { reactive } from 'vue';
-import { useRouter } from 'vue-router';
+  import OwnerRegister from '../owner/OwnerRegister.vue';
+  import { reactive } from 'vue';
+  import { useAuthStore } from '@/stores/storeAuth'
 
-  const router = useRouter();
-    const form = reactive({
-        'name': '',
-        'email': '',
-        'password': '',
-        'password_confirmation': ''
-    });
-
-
-    const handleSubmit = () => {
-          
-      axios.post('register', form)
-      .then((responnse) => {
-        router.push('/login');
-      })
-      .catch((error) => {
-        console.error('Registration failed:', error);
-      });
-
-    }
+  const authStore = useAuthStore();
+  const form = reactive({
+      'name': '',
+      'email': '',
+      'password': '',
+      'password_confirmation': '',
+      'type_role': 'User'
+  });
 </script>
