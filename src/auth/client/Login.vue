@@ -8,10 +8,10 @@
             <div class="text-center">
               <h3>Login To Start </h3>
             </div>
-            <form @submit.prevent="handleSubmit">
-              <div class="alert alert-danger text-center" v-if="errorMessage" role="alert">
+            <form @submit.prevent="authStore.handleLogin(form)">
+              <!-- <div class="alert alert-danger text-center" v-if="errorMessage" role="alert">
                   {{ errorMessage }}
-                </div> 
+                </div>  -->
               <div class="mb-4">
                 <label class="label-control" for="email">Email</label>
                 <input v-model="form.email" class="form-control" type="text" id="email" placeholder="Enter your email">
@@ -42,34 +42,14 @@
 
 </template>
 <script setup>
-import axios from 'axios';
-import { reactive, ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { useStore } from 'vuex';
+import { ref } from 'vue';
+import { useAuthStore } from '@/stores/storeAuth';
 
-  const store = useStore();
-  const router = useRouter();
-  const errorMessage = ref('');
+  const authStore = useAuthStore();
 
-  const form = reactive({
-    'email': '',
-    'password': ''
+  const form = ref({
+    email: '',
+    password: ''
   });
-
-  const handleSubmit = () => {
-
-    axios.post('login', form)
-    .then((response) => {
-      form.email = response.data.email,
-      form.password = response.data.password;
-      localStorage.setItem('token', response.data.token );
-      store.dispatch('change', response.data.user)
-      router.push('/home');
-    })
-    .catch ((error) => {
-      
-      errorMessage.value = error.response.data.message
-    })
-  }
 
 </script>

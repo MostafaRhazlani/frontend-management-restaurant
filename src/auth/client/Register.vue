@@ -26,7 +26,7 @@
             </div>
             <div class="tab-content ">
               <div class="tab-pane active" id="profile">
-                <form @submit.prevent="submitUser()" class="form-horizontal">
+                <form @submit.prevent="authStore.handleRegister(form)" class="form-horizontal">
                   <div class="mb-3">
                     <label class="label-control" for="username">Username</label>
                     <input v-model="form.type_role" class="form-control" type="hidden">
@@ -72,30 +72,15 @@
 </template>
 <script setup>
   import OwnerRegister from '../owner/OwnerRegister.vue';
-  import axios from 'axios';
-  import { reactive, ref } from 'vue';
-  import { useRouter } from 'vue-router';
+  import { reactive } from 'vue';
+  import { useAuthStore } from '@/stores/storeAuth'
 
-  const errors = ref('');
-  const router = useRouter();
-    const form = reactive({
-        'name': '',
-        'email': '',
-        'password': '',
-        'password_confirmation': '',
-        'type_role': 'User'
-    });
-
-
-  const submitUser = () => {
-        
-    axios.post('register', form)
-    .then((responnse) => {
-      router.push('/login');
-    })
-    .catch((error) => {
-      errors.value = error.response.data.errors
-    });
-
-  }
+  const authStore = useAuthStore();
+  const form = reactive({
+      'name': '',
+      'email': '',
+      'password': '',
+      'password_confirmation': '',
+      'type_role': 'User'
+  });
 </script>
