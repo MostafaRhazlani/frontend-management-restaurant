@@ -38,9 +38,17 @@
               </ul>
               <div class="user_option">
                 
+                <div v-if="!authStore.user">
+                  <router-link to="/login" title="log in" class="user_link">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                  </router-link>
 
-                <!-- Example single danger button -->
-                <div v-if="user" class="btn-group">
+                  <router-link to="/register" title="register" class="user_link">
+                    <i class="fa-solid fa-user-plus"></i>
+                  </router-link>
+                </div>
+
+                <div v-else class="btn-group">
                   <a href="" class="user_link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-user" aria-hidden="true"></i>
                   </a>
@@ -54,21 +62,11 @@
                       Settings
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a href="javascript:void(0)" class="dropdown-item m-0" @click="handleClick">
+                    <a href="javascript:void(0)" class="dropdown-item m-0" @click="authStore.handleLogout">
                       <i class="fa-solid fa-right-to-bracket"></i>&nbsp;
                       Logout
                     </a>
                   </div>
-                </div>
-
-                <div v-else>
-                  <router-link to="/login" title="log in" class="user_link">
-                    <i class="fa-solid fa-right-to-bracket"></i>
-                  </router-link>
-
-                  <router-link to="/register" title="register" class="user_link">
-                    <i class="fa-solid fa-user-plus"></i>
-                  </router-link>
                 </div>
 
                 <a class="cart_link" href="#">
@@ -129,11 +127,21 @@
                     </g>
                   </svg>
                 </a>
-
-                <button class="order_online ml-2" @click="accessClick">
-                  <i class="fa-solid fa-utensils"></i>&nbsp;
-                  My Restaurant
-                </button>
+                <div v-if="authStore.user">
+                  <div v-if="authStore.userRestaurant">
+                    <router-link to="/owner" class="order_online ml-2">
+                      <i class="fa-solid fa-shrimp"></i>
+                      My Restaurant
+                    </router-link>
+                  </div>
+                  <div v-else>
+                    <button class="order_online ml-2">
+                      <i class="fa-solid fa-plus"></i>
+                      Create Restaurant
+                    </button>
+                  </div>
+                  
+                </div>
               </div>
             </div>
           </nav>
@@ -145,31 +153,9 @@
 
 </template>
 <script setup>
-import axios from 'axios';
-import { useRouter } from 'vue-router';
-import { useStore } from 'vuex';
-import { computed } from 'vue'
-
-  const store = useStore();
-  const router = useRouter();
-
-  const user = computed(() => store.getters.isLoggedin);
-
-  const handleClick = () => {
-    localStorage.removeItem('token');
-    store.dispatch('change', null)
-    router.push('/home');
-  }
-
-  const accessClick = () => {
-      axios.get('user')
-      .then((response) => {
-        router.push('/owner/page')
-      })
-      .catch((error) => {
-        console.error('User is not logged in', error);
-      });
-  }
+import { useAuthStore } from '@/stores/storeAuth'
+const authStore = useAuthStore();
+  
 </script>
 
 <style>
